@@ -7,5 +7,5 @@ import com.growBy.entity.GbEstado;
 
 @Repository
 public interface EstadoRepository extends JpaRepository<GbEstado, Long> {
-    // Aquí puedes agregar consultas personalizadas si las necesitas
+
 }

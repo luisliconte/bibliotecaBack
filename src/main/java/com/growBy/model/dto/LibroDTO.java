@@ -14,11 +14,10 @@ public class LibroDTO {
     private Integer idAutor;
     private String isbn;
     private Date fechaPublicacion;
-    private Integer idEstado;  // Usamos el ID de Estado en lugar de la entidad completa
+    private Integer idEstado;
     private Date fechaRegistro;
     private Date fechaActualizacion;
     
-    // Constructor personalizado que recibe un objeto gbLibro
     public LibroDTO(GbLibro libro) {
         this.idLibro = libro.getIdLibro();
         this.titulo = libro.getTitulo();

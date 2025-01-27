@@ -42,15 +42,18 @@ public class PrestamoService {
 		prestamo.setFechaCreacion(new Date());
 		GbPrestamo nuevoPrestamo = prestamoMapper.toEntity(prestamo);
 		GbPrestamo prestamoGuardado = prestamoRepository.save(nuevoPrestamo);
+		
 		return prestamoMapper.toDto(prestamoGuardado);
 	}
 
 	public List<PrestamoDTO> obtenerPrestamo() {
 		List<GbPrestamo> listaPrestamo = prestamoRepository.findAll();
+		
 		return listaPrestamo.stream().map(prestamoMapper::toDto).toList();
 	}
 
 	public Optional<PrestamoDTO> obtenerPrestamoPorId(Long id) {
+		
 		return prestamoRepository.findById(id).map(prestamoMapper::toDto);
 	}
 
@@ -92,12 +95,10 @@ public class PrestamoService {
 	}
 
 	public Map<String, Object> obtenerPrestamosPorLibro(Long idLibro, int pagina, int tamanio) {
-		// Listar préstamos de un libro específico paginados
 		List<GbPrestamo> listaPrestamos = prestamoPaginacionRepository.listarPrestamosPorLibroPaginados(idLibro, pagina,
 				tamanio);
 
-		List<PrestamoDTO> prestamoDTO = listaPrestamos.stream().map(prestamoMapper::toDto) // Convierte cada entidad
-																							// GbLibro a un DTO
+		List<PrestamoDTO> prestamoDTO = listaPrestamos.stream().map(prestamoMapper::toDto)
 				.collect(Collectors.toList());
 
 		long totalRegistros = prestamoPaginacionRepository.contarPrestamosPorLibro(idLibro);

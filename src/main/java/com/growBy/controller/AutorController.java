@@ -49,6 +49,7 @@ public class AutorController {
     @PostMapping()
     public ResponseEntity<AutorDTO> crearAutor(@RequestBody AutorDTO autorDTO) {
     	AutorDTO nuevoAutor = autorService.crearAutor(autorDTO);
+    	
         return new ResponseEntity<>(nuevoAutor, HttpStatus.CREATED);
     }
 
@@ -56,6 +57,7 @@ public class AutorController {
     @GetMapping()
     public ResponseEntity<List<AutorDTO>> obtenerAutor() {
         List<AutorDTO> autor = autorService.obtenerAutor();
+        
         return new ResponseEntity<>(autor, HttpStatus.OK);
     }
 
@@ -63,6 +65,7 @@ public class AutorController {
     @GetMapping("/{id}")
     public ResponseEntity<AutorDTO> obtenerAutorPorId(@PathVariable("id") Long id) {
         Optional<AutorDTO> autor = autorService.obtenerAutorPorId(id);
+        
         return autor.map(ResponseEntity::ok)
                     .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).build());
     }
@@ -89,6 +92,7 @@ public class AutorController {
         	autorService.eliminarAutor(id);
             return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
         }
+        
         return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
     

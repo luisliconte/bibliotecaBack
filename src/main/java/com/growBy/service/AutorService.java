@@ -44,6 +44,7 @@ public class AutorService {
 
 	public List<AutorDTO> obtenerAutor() {
 		List<GbAutor> listaAutor = autorRepository.findAll();
+		
 		return listaAutor.stream().map(autorMapper::toDto).toList();
 	}
 

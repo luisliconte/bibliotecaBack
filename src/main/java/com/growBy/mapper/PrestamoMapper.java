@@ -8,7 +8,6 @@ import com.growBy.model.dto.PrestamoDTO;
 @Component
 public class PrestamoMapper {
 
-    // Convierte la entidad GbPrestamo a un DTO de Prestamo
     public PrestamoDTO toDto(GbPrestamo gbPrestamo) {
         if (gbPrestamo == null) {
             return null;
@@ -26,7 +25,6 @@ public class PrestamoMapper {
         return prestamoDTO;
     }
 
-    // Convierte un DTO de Prestamo a la entidad GbPrestamo
     public GbPrestamo toEntity(PrestamoDTO prestamoDTO) {
         if (prestamoDTO == null) {
             return null;

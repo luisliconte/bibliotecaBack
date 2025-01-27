@@ -9,8 +9,8 @@ import com.growBy.entity.GbPrestamo;
 public class PrestamoDTO {
 
     private Long idPrestamo;
-    private Long idLibro; // Solo guardamos el ID del libro
-    private Integer idEstado; // Solo guardamos el ID del estado
+    private Long idLibro;
+    private Integer idEstado;
     private Date fechaPrestamo;
     private Date fechaDevolucion;
     private Date fechaCreacion;
@@ -26,7 +26,6 @@ public class PrestamoDTO {
 		this.fechaActualizacion = prestamo.getFechaActualizacion();
 	}
 
-    // Constructor por defecto
     public PrestamoDTO() {
     }
 	

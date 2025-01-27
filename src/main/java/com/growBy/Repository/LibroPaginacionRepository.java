@@ -19,32 +19,26 @@ public class LibroPaginacionRepository {
 	    private EntityManager entityManager;
 
 	    public List<GbLibro> listarLibroPaginados(int pagina, int tamanio) {
-	        // Crear el CriteriaBuilder y CriteriaQuery
+
 	        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
 	        CriteriaQuery<GbLibro> criteriaQuery = criteriaBuilder.createQuery(GbLibro.class);
 
-	        // Definir la raíz de la consulta (tabla principal)
 	        Root<GbLibro> root = criteriaQuery.from(GbLibro.class);
 
-	        // Especificar los campos que se desean seleccionar (puedes incluir joins aquí si es necesario)
 	        criteriaQuery.select(root);
 
-	        // Crear la consulta con paginación
 	        return entityManager.createQuery(criteriaQuery)
-	                .setFirstResult(pagina * tamanio) // Índice inicial (offset)
-	                .setMaxResults(tamanio)          // Tamaño de página (limit)
+	                .setFirstResult(pagina * tamanio)
+	                .setMaxResults(tamanio)
 	                .getResultList();
 	    }
 
 	    public long contarLibro() {
-	        // Crear el CriteriaBuilder y CriteriaQuery
 	        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
 	        CriteriaQuery<Long> countQuery = criteriaBuilder.createQuery(Long.class);
 
-	        // Definir la raíz de la consulta
 	        Root<GbLibro> root = countQuery.from(GbLibro.class);
 
-	        // Especificar el conteo total
 	        countQuery.select(criteriaBuilder.count(root));
 
 	        return entityManager.createQuery(countQuery).getSingleResult();

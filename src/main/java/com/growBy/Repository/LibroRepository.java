@@ -7,5 +7,5 @@ import com.growBy.entity.GbLibro;
 
 @Repository
 public interface LibroRepository extends JpaRepository<GbLibro, Long> {
-    // Aquí puedes agregar consultas personalizadas si las necesitas
+	
 }

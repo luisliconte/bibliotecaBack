@@ -41,55 +41,48 @@ public class LibroService {
 		return libroMapper.toDto(libroGuardado);
 	}
 
-	// Obtener todos los libros
 	public List<LibroDTO> obtenerLibros() {
 		List<GbLibro> listaLibro = libroRepository.findAll();
 		return listaLibro.stream().map(libroMapper::toDto).toList();
 	}
 
-	// Obtener un libro por ID
+
 	public Optional<LibroDTO> obtenerLibroPorId(Long id) {
 
 		return libroRepository.findById(id).map(libroMapper::toDto);
 	}
 
 	public LibroDTO actualizarLibro(Long id, LibroDTO libroActualizado) {
-		// Buscar el libro existente por ID
+		
 		return libroRepository.findById(id).map(libro -> {
-			// Actualizar los campos del libro
+
 			libro.setTitulo(libroActualizado.getTitulo());
 			libro.setIdAutor(libroActualizado.getIdAutor());
 			libro.setIsbn(libroActualizado.getIsbn());
 			libro.setFechaPublicacion(libroActualizado.getFechaPublicacion());
 			libro.setFechaActualizacion(new Date());
 
-			// Guardar los cambios en la base de datos
 			GbLibro libroGuardado = libroRepository.save(libro);
 
-			// Convertir la entidad guardada de nuevo a un DTO y devolverlo
 			return new LibroDTO(libroGuardado);
 		}).orElseThrow(() -> new ResourceNotFoundException("El libro con id " + id + " no existe."));
 	}
 
-	// Eliminar un libro
 	public void eliminarLibro(Long id) {
 		System.out.print(id + "ide de prueba eliminar");
 		libroRepository.deleteById(id);
 	}
 
 	public Map<String, Object> obtenerLibroPaginados(int pagina, int tamanio) {
-		// Listar libros paginados y convertir a DTO
 	    List<GbLibro> listaLibros = libroPaginacionRepository.listarLibroPaginados(pagina, tamanio);
 	    List<LibroDTO> librosDTO = listaLibros.stream()
-	                                          .map(libroMapper::toDto)  // Convierte cada entidad GbLibro a un DTO
+	                                          .map(libroMapper::toDto)
 	                                          .collect(Collectors.toList());
 
-	    // Contar el total de registros
 	    long totalRegistros = libroPaginacionRepository.contarLibro();
 
-	    // Preparar la respuesta
 	    Map<String, Object> respuesta = new HashMap<>();
-	    respuesta.put("libros", librosDTO);  // Devolver los DTOs, no las entidades
+	    respuesta.put("libros", librosDTO);
 	    respuesta.put("paginaActual", pagina);
 	    respuesta.put("tamanioPagina", tamanio);
 	    respuesta.put("totalRegistros", totalRegistros);

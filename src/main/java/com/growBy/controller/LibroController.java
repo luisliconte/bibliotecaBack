@@ -49,6 +49,7 @@ public class LibroController {
     @PostMapping()
     public ResponseEntity<LibroDTO> crearLibro(@RequestBody LibroDTO libro) {
     	LibroDTO nuevoLibro = libroService.crearLibro(libro);
+    	
         return new ResponseEntity<>(nuevoLibro, HttpStatus.CREATED);
     }
 
@@ -56,6 +57,7 @@ public class LibroController {
     @GetMapping()
     public ResponseEntity<List<LibroDTO>> obtenerLibros() {
         List<LibroDTO> libros = libroService.obtenerLibros();
+        
         return new ResponseEntity<>(libros, HttpStatus.OK);
     }
 
@@ -63,6 +65,7 @@ public class LibroController {
     @GetMapping("/{id}")
     public ResponseEntity<LibroDTO> obtenerLibroPorId(@PathVariable("id") Long id) {
         Optional<LibroDTO> libro = libroService.obtenerLibroPorId(id);
+        
         return libro.map(ResponseEntity::ok)
                     .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).build());
     }
@@ -70,16 +73,13 @@ public class LibroController {
     @Operation(summary = "Actualizar libro por ID.", description = "Devuelve el libro ectualizado.")
     @PutMapping("/{id}")
     public ResponseEntity<LibroDTO> actualizarLibro(@PathVariable("id") Long id, @RequestBody LibroDTO libroActualizado) {
-        // Intentar obtener el libro por ID
         Optional<LibroDTO> libroExistente = libroService.obtenerLibroPorId(id);
 
         if (libroExistente.isPresent()) {
-            // Actualizar el libro y devolver el resultado
         	LibroDTO actualizado = libroService.actualizarLibro(id, libroActualizado);
             return new ResponseEntity<>(actualizado, HttpStatus.OK);
         }
 
-        // Si no se encuentra el libro, devolver un 404
         return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
 
@@ -91,6 +91,7 @@ public class LibroController {
         	libroService.eliminarLibro(id);
             return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
         }
+        
         return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
     

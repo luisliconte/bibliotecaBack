@@ -50,6 +50,7 @@ public class PrestamoController {
     @PostMapping()
     public ResponseEntity<PrestamoDTO> crearPrestamo(@RequestBody PrestamoDTO prestamo) {
     	PrestamoDTO nuevoPrestamo = prestamoService.crearPrestamo(prestamo);
+    	
         return new ResponseEntity<>(nuevoPrestamo, HttpStatus.CREATED);
     }
 
@@ -61,6 +62,7 @@ public class PrestamoController {
     })
     public ResponseEntity<List<PrestamoDTO>> obtenerPrestamo() {
         List<PrestamoDTO> prestamo = prestamoService.obtenerPrestamo();
+        
         return new ResponseEntity<>(prestamo, HttpStatus.OK);
     }
 
@@ -68,6 +70,7 @@ public class PrestamoController {
     @Operation(summary = "Obtener todos los prerstamo por ID.", description = "Devuelve un prestamo según el ID.")
     public ResponseEntity<PrestamoDTO> obtenerPrestamoPorId(@PathVariable("id") Long id) {
         Optional<PrestamoDTO> prestamo = prestamoService.obtenerPrestamoPorId(id);
+        
         return prestamo.map(ResponseEntity::ok)
                     .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).build());
     }
@@ -95,6 +98,7 @@ public class PrestamoController {
         	prestamoService.eliminarPrestamo(id);
             return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
         }
+        
         return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
     
@@ -105,7 +109,6 @@ public class PrestamoController {
             @RequestParam(defaultValue = "0") int pagina,
             @RequestParam(defaultValue = "10") int tamanio) {
 
-        // Obtener préstamos paginados
         Map<String, Object> resultado = prestamoService.obtenerPrestamosPaginados(pagina, tamanio);
 
         return ResponseEntity.ok(resultado);
@@ -117,6 +120,7 @@ public class PrestamoController {
             @PathVariable Long idLibro,
             @RequestParam(defaultValue = "1") int pagina, 
             @RequestParam(defaultValue = "10") int tamanio) {
+    	
         return prestamoService.obtenerPrestamosPorLibro(idLibro, pagina, tamanio);
     }
     

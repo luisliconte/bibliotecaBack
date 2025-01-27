@@ -41,7 +41,7 @@ Proyecto Biblioteca desarrollado con Spring Boot para la creación de API REST, 
 - Endpoint -> http://localhost:8080/api/prestamo/paginados?pagina=0&tamanio=3
 - Endpoint -> http://localhost:8080/api/prestamo/libro/21?pagina=1&tamanio=2
 
-# Cosas que faltan por mejorars:
+# Cosas que faltan por mejorar:
 
 - Crear un centralizador de errores para poder manejar todos los errores y excepciones.
 - Configurar Lombok, ya que se instaló pero no funciona.

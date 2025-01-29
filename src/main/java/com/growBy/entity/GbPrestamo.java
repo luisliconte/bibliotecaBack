@@ -4,6 +4,7 @@ import java.util.Date;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -102,12 +103,19 @@ public class GbPrestamo {
 		this.fechaActualizacion = fechaActualizacion;
 	}
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_libro", referencedColumnName = "id_libro", insertable = false, updatable = false)
 	private GbLibro libro;
-
-	public GbLibro getLibro() {
-		return libro;
-	}
+	
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "id_estado", referencedColumnName = "id_estado", insertable = false, updatable = false)
+	private GbEstado estado;
     
+	public String getTituloLibro() {
+	    return (libro != null) ? libro.getTitulo() : "Libro no disponible";
+	}
+
+	public String getEstado() {
+	    return (estado != null) ? estado.getNombreEstado() : "Estado no disponible";
+	}
 }

@@ -91,7 +91,7 @@ public class PrestamoController {
 
 
     @DeleteMapping("/{id}")
-    @Operation(summary = "Eliminar prerstamo por ID.", description = "Devuelve un mensaje de operación.")
+    @Operation(summary = "Eliminar prestamo por ID.", description = "Devuelve un mensaje de operación.")
     public ResponseEntity<Void> eliminarPrestamo(@PathVariable("id") Long id) {
         Optional<PrestamoDTO> prestamo = prestamoService.obtenerPrestamoPorId(id);
         if (prestamo.isPresent()) {
@@ -104,7 +104,7 @@ public class PrestamoController {
     
     
     @GetMapping("paginados")
-    @Operation(summary = "Obtener todos los prerstamo paginado segun la pagina y el tamaño.", description = "Devuelve un prestamo paginado.")
+    @Operation(summary = "Obtener todos los prestamo paginado segun la pagina y el tamaño.", description = "Devuelve un prestamo paginado.")
     public ResponseEntity<Map<String, Object>> listarPrestamos(
             @RequestParam(defaultValue = "0") int pagina,
             @RequestParam(defaultValue = "10") int tamanio) {
@@ -115,7 +115,7 @@ public class PrestamoController {
     }
     
     @GetMapping("/libro/{idLibro}")
-    @Operation(summary = "Obtener todos los prerstamo de un libro específico.", description = "Devuelve los prestamos por un libro especófico.")
+    @Operation(summary = "Obtener todos los prestamo de un libro específico.", description = "Devuelve los prestamos por un libro especófico.")
     public Map<String, Object> obtenerPrestamosPorLibro(
             @PathVariable Long idLibro,
             @RequestParam(defaultValue = "1") int pagina, 

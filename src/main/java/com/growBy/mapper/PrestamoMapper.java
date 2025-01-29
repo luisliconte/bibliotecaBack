@@ -21,6 +21,8 @@ public class PrestamoMapper {
         prestamoDTO.setFechaDevolucion(gbPrestamo.getFechaDevolucion());
         prestamoDTO.setFechaCreacion(gbPrestamo.getFechaCreacion());
         prestamoDTO.setFechaActualizacion(gbPrestamo.getFechaActualizacion());
+        prestamoDTO.setTituloLibro(gbPrestamo.getTituloLibro());
+        prestamoDTO.setEstado(gbPrestamo.getEstado());
 
         return prestamoDTO;
     }

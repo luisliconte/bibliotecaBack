@@ -21,5 +21,21 @@ public class GbEstado {
     @Column(name = "nombre_estado", nullable = false, length = 50)
     private String nombreEstado;
 
-    // Getters y Setters
+	public Long getIdEstado() {
+		return idEstado;
+	}
+
+	public void setIdEstado(Long idEstado) {
+		this.idEstado = idEstado;
+	}
+
+	public String getNombreEstado() {
+		return nombreEstado;
+	}
+
+	public void setNombreEstado(String nombreEstado) {
+		this.nombreEstado = nombreEstado;
+	}
+
+ 
 }

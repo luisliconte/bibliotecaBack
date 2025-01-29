@@ -11,10 +11,12 @@ public class PrestamoDTO {
     private Long idPrestamo;
     private Long idLibro;
     private Integer idEstado;
+    private String tituloLibro;
     private Date fechaPrestamo;
     private Date fechaDevolucion;
     private Date fechaCreacion;
     private Date fechaActualizacion;
+    private String estado;
     
 	public PrestamoDTO(GbPrestamo prestamo) {
 		this.idPrestamo = prestamo.getIdPrestamo();
@@ -24,6 +26,8 @@ public class PrestamoDTO {
 		this.fechaDevolucion = prestamo.getFechaDevolucion();
 		this.fechaCreacion = prestamo.getFechaCreacion();
 		this.fechaActualizacion = prestamo.getFechaActualizacion();
+		this.tituloLibro = prestamo.getTituloLibro();
+		this.estado = prestamo.getEstado();
 	}
 
     public PrestamoDTO() {
@@ -84,6 +88,22 @@ public class PrestamoDTO {
 	public void setFechaActualizacion(Date fechaActualizacion) {
 		this.fechaActualizacion = fechaActualizacion;
 	}
+
+	public String getTituloLibro() {
+		return tituloLibro;
+	}
+
+	public void setTituloLibro(String tituloLibro) {
+		this.tituloLibro = tituloLibro;
+	}
+
+	public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
     
-    
+
 }
